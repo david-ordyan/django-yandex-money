@@ -5,6 +5,7 @@ from django.db import models
 from django.conf import settings
 from .signals import payment_process
 from .signals import payment_completed
+import six
 
 try:
     User = settings.AUTH_USER_MODEL
@@ -12,6 +13,8 @@ except (ImportError, AttributeError):
     from django.contrib.auth import get_user_model
     User = get_user_model()
 
+def get_default_as_uuid():
+    return six.text_type(uuid4()).replace('-', '')
 
 class Payment(models.Model):
     class STATUS:
@@ -49,9 +52,9 @@ class Payment(models.Model):
 
     user = models.ForeignKey(User, blank=True, null=True,
                              verbose_name='Пользователь')
-    custome_number = models.CharField('Номер заказа',
-                                      unique=True, max_length=64,
-                                      default=lambda: str(uuid4()).replace('-', ''))
+    custome_number = models.CharField(
+        'Номер заказа', max_length=64,
+        default=get_default_as_uuid)
     status = models.CharField('Результата', max_length=16,
                               choices=STATUS.CHOICES,
                               default=STATUS.PROCESSED)
