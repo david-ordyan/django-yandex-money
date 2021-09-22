@@ -39,7 +39,7 @@ class CheckPaymentTest(WebTest):
 
     def test_check(self):
         params = self.params.copy()
-        params['customerNumber'] = self.payment.custome_number
+        params['customerNumber'] = self.payment.customer_number
         params['md5'] = BasePaymentForm.make_md5(params)
 
         res = self.app.post(self.url, params=params)
@@ -57,7 +57,7 @@ class CheckPaymentTest(WebTest):
 
     def test_bad_md5(self):
         params = self.params.copy()
-        params['customerNumber'] = self.payment.custome_number
+        params['customerNumber'] = self.payment.customer_number
         params['md5'] = '202CB962AC59075B964B07152D234B71'
 
         res = self.app.post(self.url, params=params)
@@ -69,7 +69,7 @@ class CheckPaymentTest(WebTest):
 
     def test_bad_data(self):
         params = self.params.copy()
-        params['customerNumber'] = self.payment.custome_number
+        params['customerNumber'] = self.payment.customer_number
         params['scid'] = 100500
         params['md5'] = BasePaymentForm.make_md5(params)
 
@@ -108,7 +108,7 @@ class NoticePaymentTest(WebTest):
 
     def test_notice(self):
         params = self.params.copy()
-        params['customerNumber'] = self.payment.custome_number
+        params['customerNumber'] = self.payment.customer_number
         params['md5'] = BasePaymentForm.make_md5(params)
 
         res = self.app.post(self.url, params=params)

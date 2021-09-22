@@ -52,7 +52,7 @@ class Payment(models.Model):
 
     user = models.ForeignKey(User, blank=True, null=True,
                              verbose_name='Пользователь')
-    custome_number = models.CharField(
+    customer_number = models.CharField(
         'Номер заказа', max_length=64,
         default=get_default_as_uuid)
     status = models.CharField('Результата', max_length=16,

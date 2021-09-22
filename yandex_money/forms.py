@@ -126,7 +126,7 @@ class PaymentForm(BasePaymentForm):
         if instance:
             self.fields['sum'].initial = instance.order_amount
             self.fields['paymentType'].initial = instance.payment_type
-            self.fields['customerNumber'].initial = instance.custome_number
+            self.fields['customerNumber'].initial = instance.customer_number
 
 
 class CheckForm(BasePaymentForm):

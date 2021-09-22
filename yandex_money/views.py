@@ -42,7 +42,7 @@ class BaseView(View):
 
     def get_payment(self, cd):
         return get_object_or_None(Payment,
-                                  custome_number=cd['customerNumber'],
+                                  customer_number=cd['customerNumber'],
                                   scid=cd['scid'], shop_id=cd['shopId'])
 
     def get_response_params(self, payment, cd):
